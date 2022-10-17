@@ -1,17 +1,17 @@
-import { AppError } from '../errors/AppError';
+import { AppError } from '../../errors/AppError';
+import { IModelProducts } from '../../model/modelProducts';
 import {
-  IHttpRequestAdd,
-  IHttpResponse,
+  IHttpRequestProducts,
   IProdutoRepository
-} from '../repository/interfaceRepository';
-import { IproductsDomain } from './interfaceDomainData';
+} from '../../repository/interfaceRepository';
+import { IproductsDomain } from '../interfaceDomainData';
 
-export class ProductsDomain implements IproductsDomain {
+export class DomainProducts implements IproductsDomain {
   constructor(private readonly repositoryProducts: IProdutoRepository) {
     this.repositoryProducts = repositoryProducts;
   }
 
-  async indexDomain(id: number): Promise<IHttpResponse> {
+  async indexDomain(id: number): Promise<IModelProducts> {
     const existProdutoId = await this.repositoryProducts.getIdProducts(id);
     if (!existProdutoId)
       throw new AppError('Produto não existe na base de dados', 404);
@@ -19,16 +19,11 @@ export class ProductsDomain implements IproductsDomain {
     return await this.repositoryProducts.getIdProducts(id);
   }
 
-  async searchDomain(): Promise<IHttpResponse[]> {
+  async searchDomain(): Promise<IModelProducts[]> {
     return await this.repositoryProducts.searchProducts();
   }
 
-  async addDomain(value: IHttpRequestAdd): Promise<IHttpResponse> {
-    const { name, price, quantity } = value;
-    if (!name || !price || !quantity) {
-      throw new AppError('Dados inválidos!', 400);
-    }
-
+  async addDomain(value: IHttpRequestProducts): Promise<IModelProducts> {
     const existCadastro = await this.repositoryProducts.getNameProducts(
       value.name
     );
@@ -41,9 +36,9 @@ export class ProductsDomain implements IproductsDomain {
   }
 
   async updateDomein(
-    values: IHttpRequestAdd,
+    values: IHttpRequestProducts,
     id: number
-  ): Promise<IHttpResponse> {
+  ): Promise<IModelProducts> {
     const existProdutoId = await this.repositoryProducts.getIdProducts(id);
     if (!existProdutoId)
       throw new AppError('Produto não existe na base de dados', 404);
@@ -58,7 +53,7 @@ export class ProductsDomain implements IproductsDomain {
     return await this.repositoryProducts.updateProducts(values, id);
   }
 
-  async deletarDomain(id: number): Promise<IHttpResponse> {
+  async deletarDomain(id: number): Promise<IModelProducts> {
     const existProdutoId = await this.repositoryProducts.getIdProducts(id);
 
     if (!existProdutoId)

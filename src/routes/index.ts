@@ -5,10 +5,18 @@ import sessionsUsersController from '../controllers/SessionsUserController';
 import productsValidations from '../utils/validations/ProductsValidations';
 import usersValidations from '../utils/validations/UserValidations';
 import sessionsUserValidations from '../utils/validations/SessionUserValidations';
+import isAuthenticated from '../middlewares/authenticated';
 
 const router = Router();
 
+//jwt
+router.post(
+  '/user_token',
+  sessionsUserValidations.bodyValidation(),
+  sessionsUsersController.getToken
+);
 //Users
+router.use(isAuthenticated);
 router.get('/user/:id', usersController.indexUser);
 router.get('/user', usersController.seachUser);
 router.delete('/user/:id', usersController.deletUser);
@@ -21,13 +29,6 @@ router.put(
   '/user/:id',
   usersValidations.bodyValidation(),
   usersController.updateUser
-);
-
-//jwt
-router.post(
-  '/user_token',
-  sessionsUserValidations.bodyValidation(),
-  sessionsUsersController.getToken
 );
 
 //Products

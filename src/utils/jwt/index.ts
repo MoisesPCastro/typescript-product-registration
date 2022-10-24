@@ -1,4 +1,5 @@
 import { sign } from 'jsonwebtoken';
+import authConfig from '../../config/auth';
 
 interface ITokenJwt {
   create(id: number): Promise<string>;
@@ -6,9 +7,9 @@ interface ITokenJwt {
 
 class TokenJwt implements ITokenJwt {
   async create(id: number): Promise<string> {
-    return sign({}, 'token_product_registration', {
+    return sign({}, authConfig.jwt.secret, {
       subject: String(id),
-      expiresIn: '1d'
+      expiresIn: authConfig.jwt.expiresIn
     });
   }
 }

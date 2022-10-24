@@ -25,7 +25,7 @@ export class DomainSessionsUser implements IDomainSessionsUser {
 
     if (!passwordConfirmed) throw new AppError('Usuário sem permissão', 401);
 
-    const token = await TokenJwt.create(user.id);
+    const token = await TokenJwt.create(user.Id);
     return { email: user.email, token };
   }
 }

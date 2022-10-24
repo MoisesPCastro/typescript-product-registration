@@ -33,7 +33,8 @@ export class UserRepository implements IUserRepository {
     return await Knex('users').where({ id }).update({
       name: values.name,
       email: values.email,
-      password: values.password
+      password: values.password,
+      avatar: values.avatar
     });
   }
 

@@ -24,3 +24,8 @@ export interface ITokenUser {
   email: string;
   token: string;
 }
+
+export interface IAvatar {
+  user_id: number;
+  avatarFilename: string;
+}

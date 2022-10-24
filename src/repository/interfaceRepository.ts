@@ -23,6 +23,7 @@ export interface IHttpRequestUser {
   name: string;
   email: string;
   password: string;
+  avatar?: string;
 }
 
 export interface IUserRepository {

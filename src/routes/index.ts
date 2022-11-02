@@ -19,16 +19,17 @@ router.post(
   sessionsUserValidations.bodyValidation(),
   sessionsUsersController.getToken
 );
-//Users
-router.use(isAuthenticated);
-router.get('/user/:id', usersController.indexUser);
-router.get('/user', usersController.seachUser);
-router.delete('/user/:id', usersController.deletUser);
 router.post(
   '/user',
   usersValidations.bodyValidation(),
   usersController.addUser
 );
+//Users
+router.use(isAuthenticated);
+router.get('/user/:id', usersController.indexUser);
+router.get('/user', usersController.seachUser);
+router.delete('/user/:id', usersController.deletUser);
+
 router.put(
   '/user/:id',
   usersValidations.bodyValidation(),

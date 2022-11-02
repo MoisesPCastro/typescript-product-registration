@@ -3,7 +3,7 @@ import module from '../domainData';
 
 class UserAvatarController {
   public async update(req: Request, res: Response): Promise<Response> {
-    const user = module.useAvatar.execute({
+    const user = await module.useAvatar.execute({
       user_id: Number(req.user.id),
       avatarFilename: String(req.file?.filename)
     });

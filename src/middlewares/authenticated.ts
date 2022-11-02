@@ -23,7 +23,7 @@ export default function isAuthenticated(
     };
 
     return next();
-  } catch (error) {
+  } catch (error: any) {
     throw new AppError('Token invalido', 401);
   }
 }

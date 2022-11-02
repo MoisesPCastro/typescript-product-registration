@@ -1,5 +1,6 @@
 import { IModelProducts } from '../model/modelProducts';
 import { IModelUsers } from '../model/modelUsers';
+import { IModelUserToken } from '../model/modelUserToken';
 
 export interface IHttpRequestProducts {
   name: string;
@@ -35,4 +36,9 @@ export interface IUserRepository {
   getAllEmailUser(email: string): Promise<IModelUsers[]>;
   updateUser(values: IHttpRequestUser, id: number): Promise<IModelUsers>;
   deleteUser(id: number): Promise<IModelUsers>;
+}
+
+export interface IUserToken {
+  getUserToken(token: string): Promise<IModelUserToken>;
+  generateToken(user_id: number): Promise<IModelUserToken>;
 }

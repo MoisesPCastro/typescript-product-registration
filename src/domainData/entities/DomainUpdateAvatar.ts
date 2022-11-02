@@ -18,9 +18,8 @@ export class DomainUpdateAvatar implements IDomainUpdateAvatar {
 
     if (user.avatar) {
       const avatarFilePath = path.join(uploadConfig.directory, user.avatar);
-      const avatarFileExists = await fs.promises.stat(avatarFilePath);
 
-      if (avatarFileExists) {
+      if (fs.existsSync(avatarFilePath)) {
         await fs.promises.unlink(avatarFilePath);
       }
     }

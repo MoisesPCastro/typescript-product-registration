@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { UserRepository } from './../../repository/usersRepository';
+import { UserRepository } from '../../repository/usersRepository';
 import { IAvatar } from '../interfaceDomainData';
 import { AppError } from '../../errors/AppError';
 import { IModelUsers } from '../../model/modelUsers';

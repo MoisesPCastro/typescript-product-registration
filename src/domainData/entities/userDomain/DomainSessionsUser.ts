@@ -1,9 +1,9 @@
-import { UserRepository } from './../../repository/usersRepository';
-import { ITokenUser } from '../interfaceDomainData';
-import { AppError } from '../../errors/AppError';
-import { Bcrypt } from '../../utils/bcrypt';
-import { IModelUsers } from '../../model/modelUsers';
-import TokenJwt from '../../utils/jwt';
+import { UserRepository } from '../../../repository/usersRepository';
+import { ITokenUser } from '../../interfaceDomainData';
+import { AppError } from '../../../errors/AppError';
+import { Bcrypt } from '../../../utils/bcrypt';
+import { IModelUsers } from '../../../model/modelUsers';
+import TokenJwt from '../../../utils/jwt';
 
 interface IDomainSessionsUser {
   execute(email: string, password: string): Promise<ITokenUser>;
@@ -25,7 +25,7 @@ export class DomainSessionsUser implements IDomainSessionsUser {
 
     if (!passwordConfirmed) throw new AppError('Usuário sem permissão', 401);
 
-    const token = await TokenJwt.create(user.Id);
+    const token = await TokenJwt.create(user.id);
     return { email: user.email, token };
   }
 }

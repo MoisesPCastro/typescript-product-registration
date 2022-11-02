@@ -1,9 +1,9 @@
-import { AppError } from '../../errors/AppError';
-import { IModelUsers } from '../../model/modelUsers';
-import { IHttpRequestUser } from '../../repository/interfaceRepository';
-import { UserRepository } from '../../repository/usersRepository';
-import { Bcrypt } from '../../utils/bcrypt';
-import { IUserDomain } from '../interfaceDomainData';
+import { AppError } from '../../../errors/AppError';
+import { IModelUsers } from '../../../model/modelUsers';
+import { IHttpRequestUser } from '../../../repository/interfaceRepository';
+import { UserRepository } from '../../../repository/usersRepository';
+import { Bcrypt } from '../../../utils/bcrypt';
+import { IUserDomain } from '../../interfaceDomainData';
 
 export class DomainUser implements IUserDomain {
   constructor(

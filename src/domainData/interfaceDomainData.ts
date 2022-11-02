@@ -1,5 +1,6 @@
 import { IModelProducts } from '../model/modelProducts';
 import { IModelUsers } from '../model/modelUsers';
+import { IModelUserToken } from '../model/modelUserToken';
 import {
   IHttpRequestProducts,
   IHttpRequestUser
@@ -23,9 +24,14 @@ export interface IUserDomain {
 export interface ITokenUser {
   email: string;
   token: string;
+  password?: string;
 }
 
 export interface IAvatar {
   user_id: number;
   avatarFilename: string;
+}
+
+export interface IDomainSendForgotPassword {
+  execute(email: string): Promise<IModelUserToken>;
 }

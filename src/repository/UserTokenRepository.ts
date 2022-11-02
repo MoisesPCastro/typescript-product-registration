@@ -10,6 +10,6 @@ export class UserTokenRepository implements IUserToken {
 
   public async generateToken(user_id: number): Promise<IModelUserToken> {
     const token = uuidv4();
-    return await knex('user_tokens').insert({ token, user_id });
+    return await knex('user_tokens').insert({ token: token, user_id: user_id });
   }
 }

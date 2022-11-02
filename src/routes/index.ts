@@ -9,6 +9,10 @@ import sessionsUserValidations from '../utils/validations/SessionUserValidations
 import isAuthenticated from '../middlewares/authenticated';
 import uploadConfig from '../config/upload';
 import usersAvatarController from '../controllers/UsersAvatarController';
+import forgotPasswordController from '../controllers/ForgotPasswordController';
+import resetPasswordController from '../controllers/ResetPsswordController';
+import passwordForgotValidations from '../utils/validations/PasswordForgotValidations';
+import resetPasswordValidations from '../utils/validations/ResetPasswordValidations';
 
 const router = Router();
 const uploadMulter = multer(uploadConfig);
@@ -24,8 +28,24 @@ router.post(
   usersValidations.bodyValidation(),
   usersController.addUser
 );
-//Users
+
+//Password
+
+router.post(
+  '/password/forgot',
+  passwordForgotValidations.bodyValidation(),
+  forgotPasswordController.create
+);
+
+router.post(
+  '/password/reset',
+  resetPasswordValidations.bodyValidation(),
+  resetPasswordController.create
+);
+
 router.use(isAuthenticated);
+
+//Users
 router.get('/user/:id', usersController.indexUser);
 router.get('/user', usersController.seachUser);
 router.delete('/user/:id', usersController.deletUser);
@@ -51,6 +71,7 @@ router.post(
   productsValidations.bodyValidation(),
   productsController.addProducts
 );
+
 router.put(
   '/products/:id',
   productsValidations.bodyValidation(),

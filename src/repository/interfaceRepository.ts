@@ -39,6 +39,6 @@ export interface IUserRepository {
 }
 
 export interface IUserToken {
-  getUserToken(token: string): Promise<IModelUserToken>;
-  generateToken(user_id: number): Promise<IModelUserToken>;
+  getUserToken(token: string): Promise<void>;
+  generateToken(user_id: number): Promise<string>;
 }

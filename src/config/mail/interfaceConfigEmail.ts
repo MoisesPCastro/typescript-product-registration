@@ -3,6 +3,6 @@ interface ITemplateVariable {
 }
 
 export interface IParseMailTemplete {
-  template: string;
-  variable: ITemplateVariable;
+  file: string;
+  variables: ITemplateVariable;
 }

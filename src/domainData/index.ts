@@ -1,3 +1,5 @@
+import { DomainCustomers } from './entities/userDomain/DomainCustomers';
+import { CustomersRepository } from './../repository/CustomersRepository';
 import { UserTokenRepository } from './../repository/UserTokenRepository';
 import { DomainSendForgotPassword } from './entities/userDomain/DomainSendForgotPassword';
 import { UserRepository } from '../repository/usersRepository';
@@ -12,6 +14,7 @@ import { DomainResetPassword } from './entities/userDomain/DomainResetPassword';
 const productsRepository = new ProdutosRepository();
 const usersRepository = new UserRepository();
 const userTokenRepository = new UserTokenRepository();
+const customersRepository = new CustomersRepository();
 const bcrypt = new Bcrypt();
 
 const module = {
@@ -24,7 +27,8 @@ const module = {
     userTokenRepository,
     usersRepository,
     bcrypt
-  )
+  ),
+  customers: new DomainCustomers(customersRepository)
 };
 
 export default module;

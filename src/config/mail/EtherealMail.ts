@@ -11,7 +11,7 @@ interface ISendMail {
   to: IMailContact;
   from?: IMailContact;
   subject: string;
-  tamplateData: IParseMailTemplete;
+  templateData: IParseMailTemplete;
 }
 
 export default class EtherealMail {
@@ -19,7 +19,7 @@ export default class EtherealMail {
     to,
     from,
     subject,
-    tamplateData
+    templateData
   }: ISendMail): Promise<void> {
     const account = await nodemailer.createTestAccount();
     const handlebarsMailTemplate = new HandlebarsMailTemplate();
@@ -42,7 +42,7 @@ export default class EtherealMail {
         address: to.email
       },
       subject,
-      html: await handlebarsMailTemplate.parse(tamplateData)
+      html: await handlebarsMailTemplate.parse(templateData)
     });
     console.log('Message sent: %s', message.messageId);
 

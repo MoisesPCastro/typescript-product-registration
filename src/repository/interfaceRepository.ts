@@ -1,3 +1,4 @@
+import { IModelCustomers } from '../model/modelICustomers';
 import { IModelProducts } from '../model/modelProducts';
 import { IModelUsers } from '../model/modelUsers';
 import { IModelUserToken } from '../model/modelUserToken';
@@ -37,8 +38,26 @@ export interface IUserRepository {
   updateUser(values: IHttpRequestUser, id: number): Promise<IModelUsers>;
   deleteUser(id: number): Promise<IModelUsers>;
 }
+export interface IHttpRequestCustomer {
+  name: string;
+  email: string;
+}
+
+export interface ICustomerRepository {
+  addCustomers(value: IHttpRequestCustomer): Promise<void>;
+  searchCustomers(): Promise<IModelCustomers[]>;
+  getNameCustomers(name: string): Promise<IModelCustomers>;
+  getIdCustomers(id: number): Promise<IModelCustomers>;
+  getEmailCustomers(email: string): Promise<IModelCustomers>;
+  getAllEmailCustomers(email: string): Promise<IModelCustomers[]>;
+  updateCustomers(
+    values: IHttpRequestCustomer,
+    id: number
+  ): Promise<IModelCustomers>;
+  deleteCustomers(id: number): Promise<IModelCustomers>;
+}
 
 export interface IUserToken {
-  getUserToken(token: string): Promise<void>;
+  getUserToken(token: string): Promise<IModelUserToken>;
   generateToken(user_id: number): Promise<string>;
 }

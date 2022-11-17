@@ -1,8 +1,6 @@
 import { AppError } from '../../../errors/AppError';
 import { UserRepository } from '../../../repository/usersRepository';
-import { IHttpRequestUser } from '../../../repository/interfaceRepository';
 import { UserTokenRepository } from '../../../repository/UserTokenRepository';
-import { ITokenUser } from '../../interfaceDomainData';
 import { IModelUserToken } from '../../../model/modelUserToken';
 import { addHours, isAfter } from 'date-fns';
 import { Bcrypt } from '../../../utils/bcrypt';

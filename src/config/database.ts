@@ -1,13 +1,14 @@
+import 'dotenv/config';
 import knex from 'knex';
 
 export default knex({
-  client: 'mysql2',
+  client: process.env.DB_CLIENT,
   connection: {
-    host: '127.0.0.1',
-    user: 'root',
-    port: 3306,
-    password: '5506',
-    database: 'appVendas'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    port: Number(process.env.DB_PORT),
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_BASE
     //tabela é a -> products
   }
 });

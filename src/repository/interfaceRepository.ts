@@ -1,12 +1,19 @@
+import { CustomersRepository } from './CustomersRepository';
 import { IModelCustomers } from '../model/modelICustomers';
 import { IModelProducts } from '../model/modelProducts';
 import { IModelUsers } from '../model/modelUsers';
 import { IModelUserToken } from '../model/modelUserToken';
+import { IModelOrders } from '../model/modelOrders';
+import { DomainCustomers } from '../domainData/entities/userDomain/DomainCustomers';
 
 export interface IHttpRequestProducts {
   name: string;
   price: number;
   quantity: number;
+}
+export interface IHttpRequestOrders {
+  customer: CustomersRepository;
+  product: IHttpRequestProducts[];
 }
 
 export interface IProdutoRepository {
@@ -19,6 +26,21 @@ export interface IProdutoRepository {
   ): Promise<IModelProducts>;
   getIdProducts(id: number): Promise<IModelProducts>;
   deleteProducts(id: number): Promise<IModelProducts>;
+}
+export interface IOrdersRepository {
+  addOrders(value: IRequestOrder): Promise<IModelOrders>;
+  getIdOrders(id: number): Promise<IModelOrders>;
+}
+
+interface Iproduct {
+  id_product: string;
+  price: number;
+  quantity: number;
+}
+
+export interface IRequestOrder {
+  customer: DomainCustomers;
+  products: Iproduct;
 }
 
 export interface IHttpRequestUser {
@@ -60,4 +82,8 @@ export interface ICustomerRepository {
 export interface IUserToken {
   getUserToken(token: string): Promise<IModelUserToken>;
   generateToken(user_id: number): Promise<string>;
+}
+
+export interface IfindeProducts {
+  id: number;
 }

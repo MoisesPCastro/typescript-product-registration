@@ -1,6 +1,6 @@
 export default {
   jwt: {
-    secret: 'token_product_registration',
+    secret: process.env.APP_SECRET,
     expiresIn: '1d'
   }
 };

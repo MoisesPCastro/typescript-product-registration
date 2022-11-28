@@ -1,11 +1,13 @@
 import { IModelCustomers } from '../model/modelICustomers';
+import { IModelOrders } from '../model/modelOrders';
 import { IModelProducts } from '../model/modelProducts';
 import { IModelUsers } from '../model/modelUsers';
 import { IModelUserToken } from '../model/modelUserToken';
 import {
   IHttpRequestCustomer,
   IHttpRequestProducts,
-  IHttpRequestUser
+  IHttpRequestUser,
+  IRequestOrder
 } from '../repository/interfaceRepository';
 
 export interface IproductsDomain {
@@ -17,6 +19,24 @@ export interface IproductsDomain {
     id: number
   ): Promise<IModelProducts>;
   deletarDomain(id: number): Promise<IModelProducts>;
+}
+
+interface IProduct {
+  id: number;
+  quantity: number;
+}
+
+export interface IRequestOrderDomain {
+  id_customer: number;
+  products: IProduct[];
+}
+
+export interface IOrdersDomain {
+  indexDomain(id: number): Promise<IModelOrders>;
+  addDomain({
+    id_customer,
+    products
+  }: IRequestOrderDomain): Promise<IModelOrders>;
 }
 
 export interface IUserDomain {

@@ -1,6 +1,7 @@
 import knex from '../config/database';
 import { IModelProducts } from '../model/modelProducts';
 import {
+  IfindeProducts,
   IHttpRequestProducts,
   IProdutoRepository
 } from './interfaceRepository';
@@ -20,6 +21,12 @@ export class ProdutosRepository implements IProdutoRepository {
 
   async getIdProducts(id: number): Promise<IModelProducts> {
     return await knex('products').select('*').where({ id }).first();
+  }
+  async getAllIdProducts(
+    productsId: IfindeProducts[]
+  ): Promise<IModelProducts[]> {
+    const arrayidProducts = productsId.map(item => item.id);
+    return await knex('products').select('*').whereIn('id', arrayidProducts);
   }
 
   async updateProducts(

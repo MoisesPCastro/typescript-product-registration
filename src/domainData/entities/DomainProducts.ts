@@ -16,7 +16,7 @@ export class DomainProducts implements IproductsDomain {
     if (!existProdutoId)
       throw new AppError('Produto não existe na base de dados', 404);
 
-    return await this.repositoryProducts.getIdProducts(id);
+    return existProdutoId;
   }
 
   async searchDomain(): Promise<IModelProducts[]> {

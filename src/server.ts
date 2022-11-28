@@ -1,3 +1,3 @@
 import { app } from './app';
-
-app.listen(3333, () => console.log('SERVIDOR RODANDO NA PORTA 33333'));
+const PORT = process.env.PORT;
+app.listen(PORT, () => console.log(`SERVIDOR RODANDO NA PORTA ${PORT}`));
